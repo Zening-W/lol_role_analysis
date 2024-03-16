@@ -1,4 +1,4 @@
-# lol_role_analysis
+# League of Legends position carrying analsysis
 By Zening Wang and Chenxi Li
 ## Introduction
 Our dataset comprises the entire professional match statistics for the game League of Legends throughout 2023. Each match is represented by 12 rows, including one for each player and one for each team, with over 100 columns capturing various dimensions of data. Our primary question is focused on determining which role carries the most impact in professional matches during 2023, specifically between Mid and Bot players.
