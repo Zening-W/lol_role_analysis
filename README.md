@@ -1,4 +1,4 @@
-# League of Legends position carrying analsysis
+# League of Legends role carrying analsysis
 By Zening Wang and Chenxi Li
 ## Introduction
 Our dataset comprises the entire professional match statistics for the game League of Legends throughout 2023. Each match is represented by 12 rows, including one for each player and one for each team, with over 100 columns capturing various dimensions of data. Our primary question is focused on determining which role carries the most impact in professional matches during 2023, specifically between Mid and Bot players.
@@ -9,14 +9,14 @@ It's important to note that there are numerous ways to define "carry" in League 
 After cleaning and filtering the original dataset, we keep 9 columns in total: *patch*, *split*, *position*, *champion*, *result*, *damagetochampions*, *damageshare*, *visionscore*, *totalgold* and one added column *damagepergold*. We choose these columns because basically these consist of all measurements of "carrying" and we also keep record of the patch and time data for further anlysis. After excluding team data rows, we have 104920 rows remaining.
 
 Explanation of columns:
-- *patch* is the game patch of this match take place at
-- *position* is the specfic role of the player
-- *champion* is the champion selection of the player
-- *result* is the boolean result of this match(1 for win, 0 for lose)
-- *damagetochampions* is the damage of the player deals to enemy champions
-- *damageshare* is the ratio proportion of the damage the player has to the whole team
-- *visionscore* is the vision of the team this player has influenced
-- *totalgold* is the total gold of the player gained in teh whole match
+- *patch*: is the game patch of this match take place at
+- *position*: is the specfic role of the player
+- *champion*: is the champion selection of the player
+- *result*: is the boolean result of this match(1 for win, 0 for lose)
+- *damagetochampions*: is the damage of the player deals to enemy champions
+- *damageshare*: is the ratio proportion of the damage the player has to the whole team
+- *visionscore*: is the vision of the team this player has influenced
+- *totalgold*: is the total gold of the player gained in teh whole match
 
 ## Data Cleaning and Exploratory Data Analysis
 
