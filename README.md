@@ -71,6 +71,7 @@ Interesting Aggregates:
 | Mid      | 18907.72                 | 8449.39                 | 0.26442             | 0.06915           | 34.94              | 14.21             | 12604.23         | 2901.89         | 1.47                 | 0.45                |
 | Sup      | 5618.57                  | 3334.64                 | 0.08028             | 0.03868           | 92.30              | 31.92             | 7587.10          | 1540.39         | 0.73                 | 0.35                |
 | Top      | 15722.32                 | 6903.76                 | 0.22327             | 0.06716           | 31.54              | 12.21             | 12040.81         | 2769.13         | 1.29                 | 0.41                |
+
 From this aggregated table, we could see the results from the graphs we concluded above more clearly. While bot players have highest damage to the enemy among the team, they also have highest total gold meaning they have taken the most resources in the team. However, when we talk about damaging effciency, mid players have higher damage per gold. Something interesting is that while support players have far highest visison score, they have both lowest damage to enemy and gold gained, indicating they have spent all gold on placing wards(such greatness of sacrificing!)
 ## Assessment of Missingness
 
