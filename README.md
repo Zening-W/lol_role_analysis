@@ -21,13 +21,14 @@ Explanation of columns:
 ## Data Cleaning and Exploratory Data Analysis
 After loading the dataset, we need to first select the above columns from the original dataset by specifying the column neams. Then we need filter out all rows of team data from the dataset by slicing the "postion" columns. After this, we check all none values in each column to make sure they are in explainable extent(notice that it is common that there are many none values in "split" column because certain  matches hold only once a year so they have no splits definitions). Finally, we add one more column called "damage per gold" by dividing the "total damage" by the "total gold" as the most direct anaylyzing factor. After cleaning, here is the head of our dataset:
 
-| # | Date | Season | Position | Champion | Games Played | Win Rate | KDA Ratio | Kills | Deaths | Assists |
-|---|------|--------|----------|----------|--------------|----------|-----------|-------|--------|---------|
+| # | Patch | Split | Position | Champion | Result | Damage to Champions | Damage Share | Vision Score | Total Gold | Damage per Gold |
+|---|-------|-------|----------|----------|--------|---------------------|--------------|--------------|------------|-----------------|
 | 0 | 13.01 | Spring | Top | Jax | 1 | 14283 | 0.150027 | 49 | 18855 | 0.757518 |
 | 1 | 13.01 | Spring | Jungle | Poppy | 1 | 6219 | 0.065324 | 61 | 12082 | 0.514733 |
 | 2 | 13.01 | Spring | Mid | Taliyah | 1 | 27028 | 0.283899 | 49 | 15722 | 1.719120 |
 | 3 | 13.01 | Spring | Bot | Ezreal | 1 | 42005 | 0.441215 | 47 | 17332 | 2.423552 |
 | 4 | 13.01 | Spring | Support | Karma | 1 | 5668 | 0.059536 | 106 | 8816 | 0.642922 |
+
 
 Univariate Analysis:
 
