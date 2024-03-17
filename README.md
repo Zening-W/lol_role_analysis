@@ -31,6 +31,12 @@ After loading the dataset, we need to first select the above columns from the or
 
 
 Univariate Analysis:
+<iframe
+  src="assets/damage_Share_by_position.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 Bivariate Analysis:
 ## Assessment of Missingness
