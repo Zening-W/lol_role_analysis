@@ -16,8 +16,8 @@ Explanation of columns:
 - *damagetochampions*: is the damage of the player deals to enemy champions
 - *damageshare*: is the ratio proportion of the damage the player has to the whole team
 - *visionscore*: is the vision of the team this player has influenced
-- *totalgold*: is the total gold of the player gained in teh whole match
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- *totalgold*: is the total gold of the player gained in the whole match
+
 ## Data Cleaning and Exploratory Data Analysis
 After loading the dataset, we need to first select the above columns from the original dataset by specifying the column neams. Then we need filter out all rows of team data from the dataset by slicing the "postion" columns. After this, we check all none values in each column to make sure they are in explainable extent(notice that it is common that there are many none values in "split" column because certain  matches hold only once a year so they have no splits definitions). Finally, we add one more column called "damage per gold" by dividing the "total damage" by the "total gold" as the most direct anaylyzing factor. After cleaning, here is the head of our dataset:
 
@@ -31,14 +31,36 @@ After loading the dataset, we need to first select the above columns from the or
 
 
 Univariate Analysis:
+This is the distribution of our new variable "damage per gold'. We can see the majority of the players have such ratio between 0.7 to 1.1.
 <iframe
-  src="assets/damage_Share_by_position.html"
+  src="assets/dis_damagepergold.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
 
 Bivariate Analysis:
+We can see that Mid and Bot players have highest two distributions with Mid seem to be a little bit higher while Jungle and Support have lowest ones.
+<iframe
+  src="assets/damage_per_gold_by_position.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+However, when we ignore the effect of gold, we would find that although the highest two positions are still Mid and Bot, Bot players seem to have higher damage share within the team. But this also means Bot players are taking the most amount of resources among the team proved by next graph.
+<iframe
+  src="assets/damage_Share_by_position.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+<iframe
+  src="assets/gold_by_position.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 ## Assessment of Missingness
 
 ## Hypothesis Testing
