@@ -77,17 +77,18 @@ From this aggregated table, we could see the results from the graphs we conclude
 
 ## Assessment of Missingness
 Let's first recall the proportion of missingness of data in our cleaned dataset:
-patch                0.000953
-split                0.226839
-position             0.000000
-champion             0.000000
-result               0.000000
-damagetochampions    0.000000
-damageshare          0.000000
-visionscore          0.000000
-totalgold            0.000000
-damagepergold        0.000000
-
+-patch                0.000953
+-split                0.226839
+-position             0.000000
+-champion             0.000000
+-result               0.000000
+-damagetochampions    0.000000
+-damageshare          0.000000
+-visionscore          0.000000
+-totalgold            0.000000
+-damagepergold        0.000000
+And I claim that the missingness of 'patch' to be NMAR for the following reason.
+https://liquipedia.net/leagueoflegends/LPL/2023/Spring
 ## Hypothesis Testing
 
 ## Framing a Prediction Problem
