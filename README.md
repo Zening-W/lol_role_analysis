@@ -48,12 +48,14 @@ We can see that Mid and Bot players have highest two distributions with Mid seem
   frameborder="0"
 ></iframe>
 However, when we ignore the effect of gold, we would find that although the highest two positions are still Mid and Bot, Bot players seem to have higher damage share within the team. But this also means Bot players are taking the most amount of resources among the team proved by next graph.
+
 <iframe
   src="assets/damage_Share_by_position.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
+
 <iframe
   src="assets/gold_by_position.html"
   width="800"
@@ -61,6 +63,15 @@ However, when we ignore the effect of gold, we would find that although the high
   frameborder="0"
 ></iframe>
 
+Interesting Aggregates:
+| Position | Damagetochampions (mean) | Damagetochampions (std) | Damageshare (mean) | Damageshare (std) | Visionscore (mean) | Visionscore (std) | Totalgold (mean) | Totalgold (std) | Damagepergold (mean) | Damagepergold (std) |
+|----------|--------------------------|-------------------------|---------------------|-------------------|--------------------|-------------------|------------------|-----------------|----------------------|---------------------|
+| Bot      | 20255.54                 | 10277.40                | 0.27729             | 0.07426           | 38.18              | 16.45             | 13878.81         | 3367.20         | 1.41                 | 0.47                |
+| Jng      | 11065.11                 | 5963.56                 | 0.15474             | 0.05744           | 47.42              | 18.92             | 10654.79         | 2267.76         | 1.01                 | 0.40                |
+| Mid      | 18907.72                 | 8449.39                 | 0.26442             | 0.06915           | 34.94              | 14.21             | 12604.23         | 2901.89         | 1.47                 | 0.45                |
+| Sup      | 5618.57                  | 3334.64                 | 0.08028             | 0.03868           | 92.30              | 31.92             | 7587.10          | 1540.39         | 0.73                 | 0.35                |
+| Top      | 15722.32                 | 6903.76                 | 0.22327             | 0.06716           | 31.54              | 12.21             | 12040.81         | 2769.13         | 1.29                 | 0.41                |
+From this aggregated table, we could see the results from the graphs we concluded above more clearly. While bot players have highest damage to the enemy among the team, they also have highest total gold meaning they have taken the most resources in the team. However, when we talk about damaging effciency, mid players have higher damage per gold. Something interesting is that while support players have far highest visison score, they have both lowest damage to enemy and gold gained, indicating they have spent all gold on placing wards(such greatness of sacrificing!)
 ## Assessment of Missingness
 
 ## Hypothesis Testing
