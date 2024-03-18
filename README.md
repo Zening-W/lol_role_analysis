@@ -175,29 +175,33 @@ From this aggregated table, we could see the results from the graphs we conclude
 
 ## Assessment of Missingness
 Let's first recall the proportion of missingness of data in our cleaned dataset:
-|                   |           0 |
-|:------------------|------------:|
-| patch             | 0.000953107 |
-| split             | 0.226839    |
-| position          | 0           |
-| champion          | 0           |
-| result            | 0           |
-| damagetochampions | 0           |
-| damageshare       | 0           |
-| visionscore       | 0           |
-| totalgold         | 0           |
-| damagepergold     | 0           |
-| split_missing     | 0           |
+| Variable          | Missingness Rate |
+|:------------------|-----------------:|
+| patch             |        0.0009531 |
+| split             |        0.2268390 |
+| position          |        0.0000000 |
+| champion          |        0.0000000 |
+| result            |        0.0000000 |
+| damagetochampions |        0.0000000 |
+| damageshare       |        0.0000000 |
+| visionscore       |        0.0000000 |
+| totalgold         |        0.0000000 |
+| damagepergold     |        0.0000000 |
 
 And I claim that the missingness of 'patch' to be NMAR for the following reason:
-When I scroll to the certain rows with missing patches, I find that from original dataset that they are all LPL spring split matches. Moreover, they are during the patch between 13.4 and 13.5. Then I go to pedia page and and find that Tencent postpone the release of patch 13.5 in China region because of technical issues. Similarly, LPL also uses 13.4 patch for extra long time until Mar.9th. But they update the yummi rework and to keep it balanced so they basically use a hybrid patch with contents both from 13.4 and 13.5 since Mar.15th till LPL spring split ends. 
+When I scroll to the certain rows with missing patches, I find that from original dataset that they are all LPL spring split matches. Moreover, they are during the patch between 13.4 and 13.5. Then I go to pedia page and and find that Tencent postpone the release of patch 13.5 in China region because of technical issues. Similarly, LPL also uses 13.4 patch for extra long time until Mar.9th. But they update the yummi rework and to keep it balanced so they basically use a hybrid patch with contents both from 13.4 and 13.5 since Mar.15th till LPL spring split ends. Resources:
+
 https://liquipedia.net/leagueoflegends/LPL/2023/Spring
 https://lol.qq.com/gicp/news/410/37023581.html
+
 As a result, the patch information here is missing is due to the value itself is not a standard patch, resulting NMAR in the dataset.
 
 Now we suspect the missingness of split column is dependent on column patch. So we will perform a permuatation test to see if analyze the dependency of the missingness of split column.
+
 Null Hypothesis (H0): The missingness of the split column is independent of the patch column.
+
 Alternative Hypothesis (H1): The missingness of the split column is dependent on the patch column.
+
 As the pvalue is 0, we definitely need to reject the null hypothesis, there is very strong dependency between split column and patch column.
 Here is the empirical distribution of the test statistic, along with the observed statistic.
 <iframe
@@ -221,8 +225,11 @@ And here is the distribution of split when patch is or is not missing. We can se
 ></iframe>
 
 Now we suspect the missingness of split column is also dependent on column result.(Some teams might not report their results when they lose?) So we will perform a permuatation test to see if analyze the dependency of the missingness of split column.
+
 Null Hypothesis (H0): The missingness of the split column is independent of the result column.
+
 Alternative Hypothesis (H1): The missingness of the split column is dependent on the result column.
+
 As the pvalue is 1, we definitely fail to reject the null hypothesis, there is little dependency between split column and result column, meaning that split missing is not related to result.
 Here is the empirical distribution of the test statistic, along with the observed statistic.
 <iframe
@@ -246,6 +253,23 @@ And here is the distribution of result when patch is or is not missing. We can s
 ></iframe>
 
 ## Hypothesis Testing
+Question:Do mid and bot players have similiar damage per gold in general?(Use significance level of 1%)
+
+Null hypothesis(H0):There is no significant difference in average damage per gold between Bot and Mid players. 
+
+Alternative hypothesis(H1):There is significant difference in average damage per gold between Bot and Mid players. 
+
+Test statistic : Kolmogorov–Smirnov statistic(As we want to measure the similarity between two distributions.)
+
+ks_statistic, p_value: (0.06991040792985126, 4.9269803170380824e-45)
+The p-value is far smaller than 0.01, indicating that we are sure to reject the null: it is very likely that there is significant difference in average damage per gold between Mid and Bot players. Specfically, as the statistic is negative, mid players tend to have higher damage per gold than bot players.
+<iframe
+  src="assets/mid_bot_comparet.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+We can see that Mid laners generally have higher damage per gold than Bot laners, especially in 1.5-2 area. So finally we can conclude that Mid laners have higher damaging effciency.
 
 ## Framing a Prediction Problem
 
