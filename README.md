@@ -64,28 +64,130 @@ However, when we ignore the effect of gold, we would find that although the high
 ></iframe>
 
 Interesting Aggregates:
-| position   |   ('damagetochampions', 'mean') |   ('damagetochampions', 'std') |   ('damageshare', 'mean') |   ('damageshare', 'std') |   ('visionscore', 'mean') |   ('visionscore', 'std') |   ('totalgold', 'mean') |   ('totalgold', 'std') |   ('damagepergold', 'mean') |   ('damagepergold', 'std') |
-|:-----------|--------------------------------:|-------------------------------:|--------------------------:|-------------------------:|--------------------------:|-------------------------:|------------------------:|-----------------------:|----------------------------:|---------------------------:|
-| bot        |                        20255.5  |                       10277.4  |                 0.277289  |                0.0742564 |                   38.1838 |                  16.453  |                 13878.8 |                3367.2  |                    1.41055  |                   0.471036 |
-| jng        |                        11065.1  |                        5963.56 |                 0.154736  |                0.0574443 |                   47.4206 |                  18.9225 |                 10654.8 |                2267.76 |                    1.00885  |                   0.404042 |
-| mid        |                        18907.7  |                        8449.39 |                 0.26442   |                0.0691469 |                   34.9425 |                  14.2111 |                 12604.2 |                2901.89 |                    1.46678  |                   0.446632 |
-| sup        |                         5618.57 |                        3334.64 |                 0.0802834 |                0.0386786 |                   92.3018 |                  31.9212 |                  7587.1 |                1540.39 |                    0.727243 |                   0.346715 |
-| top        |                        15722.3  |                        6903.76 |                 0.223272  |                0.0671611 |                   31.5417 |                  12.2147 |                 12040.8 |                2769.13 |                    1.28736  |                   0.406557 |
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">damagetochampions</th>
+      <th colspan="2" halign="left">damageshare</th>
+      <th colspan="2" halign="left">visionscore</th>
+      <th colspan="2" halign="left">totalgold</th>
+      <th colspan="2" halign="left">damagepergold</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>mean</th>
+      <th>std</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>mean</th>
+      <th>std</th>
+    </tr>
+    <tr>
+      <th>position</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>bot</th>
+      <td>20255.536409</td>
+      <td>10277.401933</td>
+      <td>0.277289</td>
+      <td>0.074256</td>
+      <td>38.183759</td>
+      <td>16.453017</td>
+      <td>13878.810904</td>
+      <td>3367.200924</td>
+      <td>1.410548</td>
+      <td>0.471036</td>
+    </tr>
+    <tr>
+      <th>jng</th>
+      <td>11065.111514</td>
+      <td>5963.557908</td>
+      <td>0.154736</td>
+      <td>0.057444</td>
+      <td>47.420559</td>
+      <td>18.922462</td>
+      <td>10654.791937</td>
+      <td>2267.763845</td>
+      <td>1.008848</td>
+      <td>0.404042</td>
+    </tr>
+    <tr>
+      <th>mid</th>
+      <td>18907.717022</td>
+      <td>8449.390670</td>
+      <td>0.264420</td>
+      <td>0.069147</td>
+      <td>34.942528</td>
+      <td>14.211116</td>
+      <td>12604.231414</td>
+      <td>2901.886989</td>
+      <td>1.466783</td>
+      <td>0.446632</td>
+    </tr>
+    <tr>
+      <th>sup</th>
+      <td>5618.570959</td>
+      <td>3334.636185</td>
+      <td>0.080283</td>
+      <td>0.038679</td>
+      <td>92.301849</td>
+      <td>31.921205</td>
+      <td>7587.098361</td>
+      <td>1540.391167</td>
+      <td>0.727243</td>
+      <td>0.346715</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>15722.323437</td>
+      <td>6903.761283</td>
+      <td>0.223272</td>
+      <td>0.067161</td>
+      <td>31.541651</td>
+      <td>12.214691</td>
+      <td>12040.812190</td>
+      <td>2769.132188</td>
+      <td>1.287362</td>
+      <td>0.406557</td>
+    </tr>
+  </tbody>
+</table>
+
 
 From this aggregated table, we could see the results from the graphs we concluded above more clearly. While bot players have highest damage to the enemy among the team, they also have highest total gold meaning they have taken the most resources in the team. However, when we talk about damaging effciency, mid players have higher damage per gold. Something interesting is that while support players have far highest visison score, they have both lowest damage to enemy and gold gained, indicating they have spent all gold on placing wards(such greatness of sacrificing!)
 
 ## Assessment of Missingness
 Let's first recall the proportion of missingness of data in our cleaned dataset:
--patch                0.000953
--split                0.226839
--position             0.000000
--champion             0.000000
--result               0.000000
--damagetochampions    0.000000
--damageshare          0.000000
--visionscore          0.000000
--totalgold            0.000000
--damagepergold        0.000000
+|                   |             |
+|:------------------|------------:|
+| patch             | 0.000953107 |
+| split             | 0.226839    |
+| position          | 0           |
+| champion          | 0           |
+| result            | 0           |
+| damagetochampions | 0           |
+| damageshare       | 0           |
+| visionscore       | 0           |
+| totalgold         | 0           |
+| damagepergold     | 0           |
+| split_missing     | 0           |
 And I claim that the missingness of 'patch' to be NMAR for the following reason.
 https://liquipedia.net/leagueoflegends/LPL/2023/Spring
 ## Hypothesis Testing
