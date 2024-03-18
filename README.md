@@ -264,7 +264,7 @@ Test statistic : Kolmogorov–Smirnov statistic(As we want to measure the simila
 ks_statistic, p_value: (0.06991040792985126, 4.9269803170380824e-45)
 The p-value is far smaller than 0.01, indicating that we are sure to reject the null: it is very likely that there is significant difference in average damage per gold between Mid and Bot players. Specfically, as the statistic is negative, mid players tend to have higher damage per gold than bot players.
 <iframe
-  src="assets/mid_bot_comparet.html"
+  src="assets/mid_bot_compare.html"
   width="800"
   height="600"
   frameborder="0"
