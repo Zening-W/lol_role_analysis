@@ -175,18 +175,64 @@ From this aggregated table, we could see the results from the graphs we conclude
 
 ## Assessment of Missingness
 Let's first recall the proportion of missingness of data in our cleaned dataset:
-| Variable          | Missingness Rate |
-|:------------------|-----------------:|
-| patch             |        0.0009531 |
-| split             |        0.2268390 |
-| position          |        0.0000000 |
-| champion          |        0.0000000 |
-| result            |        0.0000000 |
-| damagetochampions |        0.0000000 |
-| damageshare       |        0.0000000 |
-| visionscore       |        0.0000000 |
-| totalgold         |        0.0000000 |
-| damagepergold     |        0.0000000 |
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NA Count</th>
+    </tr>
+    <tr>
+      <th>Column Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>patch</th>
+      <td>0.000953</td>
+    </tr>
+    <tr>
+      <th>split</th>
+      <td>0.226839</td>
+    </tr>
+    <tr>
+      <th>position</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>champion</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>result</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>damagetochampions</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>damageshare</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>visionscore</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>totalgold</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>damagepergold</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>split_missing</th>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
 
 And I claim that the missingness of 'patch' to be NMAR for the following reason:
 When I scroll to the certain rows with missing patches, I find that from original dataset that they are all LPL spring split matches. Moreover, they are during the patch between 13.4 and 13.5. Then I go to pedia page and and find that Tencent postpone the release of patch 13.5 in China region because of technical issues. Similarly, LPL also uses 13.4 patch for extra long time until Mar.9th. But they update the yummi rework and to keep it balanced so they basically use a hybrid patch with contents both from 13.4 and 13.5 since Mar.15th till LPL spring split ends. Resources:
