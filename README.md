@@ -1,4 +1,4 @@
-# League of Legends role carrying analsysis
+# League of Legends carrying analsysis
 By Zening Wang and Chenxi Li
 ## Introduction
 Our dataset comprises the entire professional match statistics for the game League of Legends throughout 2023. Each match is represented by 12 rows, including one for each player and one for each team, with over 100 columns capturing various dimensions of data. Our primary question is focused on determining which role carries the most impact in professional matches during 2023, specifically between Mid and Bot players.
@@ -319,10 +319,106 @@ We can see that Mid laners generally have higher damage per gold than Bot laners
 
 ## Framing a Prediction Problem
 
+From here, we would measure the word "carry" in another way by doing a regression prediction problem. 
+We aim to predict the impact score of players in League of Legends esports matches based on various in-game performance indicators. The impact score is another variable we introduce: a composite metric derived from individual performance metrics, including kills, assists, total creep score (CS), towers taken down, and damage dealt. This complex variable only takes the multiple indicators of resoruces of a player from first 15 minutes of the match. In other words, we only know the data(introduced below) of first 15 minutes at the time of prediction.
+
 ## Baseline Model
 
+Our baseline model incorporates two predictive models: Linear Regression and Random Forest Regressor. These models provide a comparative basis for assessing the potential for performance improvement and model refinement.
+
+**Linear Regression:** This model assumes a linear relationship between the features and the target variable, impact score. Linear Regression is less prone to overfitting compared to more complex models, making it a suitable choice for establishing a performance benchmark. It serves as an excellent comparison point for other, more advanced models due to its simplicity and interpretability.
+
+**Random Forest Regressor:** As a supervised learning algorithm, Random Forest leverages ensemble learning methods for regression tasks. It is particularly adept at capturing non-linear relationships between features and the target variable. The Random Forest Regressor can efficiently handle both categorical and continuous variables, and it has built-in mechanisms for dealing with missing values, many of which may have been imputed during data cleaning and feature engineering processes.
+
+The features selected for these baseline models include:
+- **Champion:** The character played, encoded categorically.
+- **Early Game Performance Indicators:** Kills, assists, and CS at the 15-minute mark, along with gold and experience (XP) at the same timestamp and use specific formula [log(kills) + log(assists) + log(0.1*cs) + log(0.5*towers) + log(0.2*dragons)] to convert to numerical variable.
+- **Damage to Champions:** Total damage dealt to enemy champions, indicating player aggressiveness and contribution to team fights, numerical varaible.
+
+These features were preprocessed using one-hot encoding for categorical variables and imputation for missing numerical values. The dataset was split into training and testing sets, with models trained on the former and evaluated on the latter.
+
+Our model's performance was assessed using the Root Mean Square Error (RMSE), which offers a measure of the prediction accuracy by quantifying the difference between the predicted and actual impact scores. A lower RMSE indicates a model with higher accuracy. Additionally, we considered the $R^2$ (coefficient of determination), Mean Absolute Error (MAE), and Explained Variance scores to provide a comprehensive evaluation of the model's predictive capability.
+
+Here is our result:
+
+Linear Regression Cross-Val MSE:  0.7076808594891522
+Random Forest Cross-Val MSE:  0.6219073190521505
+Linear Regression RMSE: 0.8328190121163178
+Random Forest RMSE: 0.7870945837869731
+Linear Regression R^2: 0.6773935785157854
+Random Forest R^2: 0.711845375606756
+Linear Regression MAE: 0.6666462434234882
+Random Forest MAE: 0.6175121574361448
+Linear Regression Explained Variance: 0.6774424359664726
+Random Forest Explained Variance: 0.711898694342655
+
+For MSE and RMSE, the Random Forest model outperforms the Linear Regression model, as it has lower values for both metrics. This indicates that the Random Forest model has better predictive performance in terms of error.
+
+For R-squared and Explained Variance, the Random Forest model also performs slightly better, with higher values indicating that it explains more variance in the dependent variable compared to Linear Regression.
+
+In terms of MAE, the Random Forest model again has a lower value, indicating that it makes predictions that are closer to the actual values on average compared to the Linear Regression model.
+
+The Random Forest model, in particular, demonstrated superior performance over Linear Regression, suggesting that the relationship between our selected features and the target variable might not be linear. However, the overall accuracy is not desired as good as variables like rmse is too large. We need to find ways to reduce it.
+
 ## Final Model
+### Hyperparameter Tuning
+
+To mitigate overfitting risks and improve model performance, we undertook hyperparameter tuning using cross-validation. For the Random Forest Regressor, tuning parameters to `max_depth = 10` and `n_estimators = 600` yielded a significant reduction in RMSE to 6.82.
+
+### Feature Engineering
+
+We introduced two new features based on early game performance:
+
+- *Early Game Efficiency:* A combination of early kills, assists, and a portion of the CS by the 15-minute mark.
+- *Gold-XP Ratio at 15:* The ratio of gold to XP at the 15-minute mark, highlighting resource management efficiency.
+
+The first variable is easy to understand, just another measurement of indiactor but with different proportions of compoenents. For the second one, notice that in League of Legends, getting same amount of gold and XP at the same time is very important for carrying roles like Mid and Bot. The reason is that besides cs(minions), another important way to get XP is getting kills. When a team gets a kill, all the team members nearby would get a very large amount of XP. However, only the one who get the kill would get the majority of the gold and rest only share a very small portion of gold. So such a Gold-XP Ratio would reflect not only if a player's preset at the team kill, but also show whether this player gets a kill or just share the assist gold. In professoinal matches, when carrying positions like Mid and Bot only take assists but not kills, even if they are high in XP, it is still very difficult for them to carry due to lack of gold to purchase better equipments. That is why we add this feature.
+
+### One-Hot Encoding:
+
+One-hot encoding is crucial when dealing with machine learning models that cannot inherently handle categorical data. By converting categories into a binary matrix, we ensure that the algorithm treats each category with equal importance, without any bias towards categories due to their order or position in the dataset. For example, in our dataset:
+
+Champion: Ahri -> [1, 0, 0, ..., 0]
+Champion: Zed -> [0, 0, 0, ..., 1]
+
+This process, however, increases the dimensionality of the dataset, which could lead to issues such as the curse of dimensionality. Hence, it's often paired with techniques to reduce overfitting and ensure the model's generalizability. Our approach ensures only categories (champions) represented in more than 100 observations are included, minimizing sparse columns and focusing on features with sufficient data representation.
+
+### Model Optimization
+
+Through iterative feature selection and engineering, we evaluated the performance impact of each addition. Notably, integrating one-hot encoded genres and release year data significantly enhanced model performance. Our explorations into combining features based on genre preferences and production details further refined the model's accuracy.
+
+Here is our result:
+Random Forest RMSE: 0.7609615873987088
+Random Forest R^2: 0.7306622579452193
+Random Forest MAE: 0.6003176789080994
+Random Forest Explained Variance: 0.7306841023775656
+Linear Regression RMSE: 0.6333429747871597
+
+Ultimately, the combination of rigorous hyperparameter tuning and strategic feature engineering yielded optimized models with substantially improved accuracy, as evidenced by the decreased RMSE scores.
 
 ## Fairness Analysis
 
+High Early Game Efficiency: Players with "early_game_efficiency" above or equal to the median.
+Low Early Game Efficiency: Players with "early_game_efficiency" below the median.
+We want to see if our model performs worse for individuals in Group of High Early Game Efficiency than it does for individuals in Group Low Early Game Efficiency?
+
+Null Hypothesis (H0): The model is fair. The RMSE for the high early game efficiency group and the low early game efficiency group are roughly the same, and any differences are due to random chance.
+
+Alternative Hypothesis (H1): The model is unfair. The RMSE for the high early game efficiency group is significantly different from the RMSE for the low early game efficiency group.
+
+Test statistic: difference in RMSE between groups
+
+Significance level: 1%
+
+We get P-value = 1.0: This means that the permutation test did not produce any permuted dataset differences in RMSE that were less extreme than the observed difference. Every permutation resulted in a difference that was equal to or greater than what was observed in my actual data.
+
+Implications for the Null Hypothesis: With such a high p-value, I do not have evidence to reject the null hypothesis. This suggests that the difference in RMSE between the high and low early game efficiency groups can indeed be attributed to random chance, indicating that our model does not show unfairness based on the metric and groups tested.
+
+graph
+
+Given that the observed difference is less than most of the permuted differences, this supports the p-value of 1.0. It suggests that the observed difference in RMSE between the high and low early game efficiency groups is well within the range of what could occur by chance alone. There doesn't appear to be evidence of unfairness in the model between these two groups based on this metric, as the observed disparity in performance is not significantly different from the disparities in the permuted samples.
+
+tables
+
+Finally, these three tables are the mean value of Impact Score of different postions from orginal dataset, test-split dataset and our predictions, repectively. Recall what we explore at problem1-4, Bot has higher score than Mid this time: the metirc we use in 5-8 has a different way of defining carry even though these two roles are still proved to be most impactful roles. And interestingly, although with some defect and unfairness, our model predict the roles' overall impact score more accurately.
 
