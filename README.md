@@ -414,11 +414,186 @@ We get P-value = 1.0: This means that the permutation test did not produce any p
 
 Implications for the Null Hypothesis: With such a high p-value, I do not have evidence to reject the null hypothesis. This suggests that the difference in RMSE between the high and low early game efficiency groups can indeed be attributed to random chance, indicating that our model does not show unfairness based on the metric and groups tested.
 
-graph
 
 Given that the observed difference is less than most of the permuted differences, this supports the p-value of 1.0. It suggests that the observed difference in RMSE between the high and low early game efficiency groups is well within the range of what could occur by chance alone. There doesn't appear to be evidence of unfairness in the model between these two groups based on this metric, as the observed disparity in performance is not significantly different from the disparities in the permuted samples.
 
-tables
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Table: Position and Mean Impact Score</title>
+<style>
+    table {
+        width: 50%;
+        border-collapse: collapse;
+    }
+    table, th, td {
+        border: 1px solid black;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+</head>
+<body>
+
+<h2>Position and Mean Impact Score</h2>
+
+<table>
+  <tr>
+    <th>Position</th>
+    <th>Mean Impact Score</th>
+  </tr>
+  <tr>
+    <td>bot</td>
+    <td>6.492526</td>
+  </tr>
+  <tr>
+    <td>jng</td>
+    <td>5.884834</td>
+  </tr>
+  <tr>
+    <td>mid</td>
+    <td>6.304701</td>
+  </tr>
+  <tr>
+    <td>sup</td>
+    <td>3.982983</td>
+  </tr>
+  <tr>
+    <td>top</td>
+    <td>5.858109</td>
+  </tr>
+</table>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Table: Position and Mean Impact Score</title>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    table, th, td {
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+    th, td {
+        padding: 10px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    body {
+        font-family: Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+
+<h2>Position and Mean Impact Score</h2>
+
+<table>
+  <tr>
+    <th>Position</th>
+    <th>Mean Impact Score</th>
+  </tr>
+  <tr>
+    <td>bot</td>
+    <td>5.688675</td>
+  </tr>
+  <tr>
+    <td>jng</td>
+    <td>5.676673</td>
+  </tr>
+  <tr>
+    <td>mid</td>
+    <td>5.597509</td>
+  </tr>
+  <tr>
+    <td>sup</td>
+    <td>5.654997</td>
+  </tr>
+  <tr>
+    <td>top</td>
+    <td>5.710400</td>
+  </tr>
+</table>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Table: Position and Mean Predicted Impact Score</title>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    table, th, td {
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+    th, td {
+        padding: 10px;
+    }
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+    body {
+        font-family: Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+
+<h2>Position and Mean Predicted Impact Score</h2>
+
+<table>
+  <tr>
+    <th>Position</th>
+    <th>Mean Predicted Impact Score</th>
+  </tr>
+  <tr>
+    <td>bot</td>
+    <td>6.508245</td>
+  </tr>
+  <tr>
+    <td>jng</td>
+    <td>5.784413</td>
+  </tr>
+  <tr>
+    <td>mid</td>
+    <td>6.309495</td>
+  </tr>
+  <tr>
+    <td>sup</td>
+    <td>3.982755</td>
+  </tr>
+  <tr>
+    <td>top</td>
+    <td>5.905495</td>
+  </tr>
+</table>
+
+</body>
+</html>
+
 
 Finally, these three tables are the mean value of Impact Score of different postions from orginal dataset, test-split dataset and our predictions, repectively. Recall what we explore at problem1-4, Bot has higher score than Mid this time: the metirc we use in 5-8 has a different way of defining carry even though these two roles are still proved to be most impactful roles. And interestingly, although with some defect and unfairness, our model predict the roles' overall impact score more accurately.
 
