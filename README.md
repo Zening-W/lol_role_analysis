@@ -9,14 +9,14 @@ It's important to note that there are numerous ways to define "carry" in League 
 After cleaning and filtering the original dataset, we keep 9 columns in total: *patch*, *split*, *position*, *champion*, *result*, *damagetochampions*, *damageshare*, *visionscore*, *totalgold* and one added column *damagepergold*. We choose these columns because basically these consist of all measurements of "carrying" and we also keep record of the patch and time data for further anlysis. After excluding team data rows, we have 104920 rows remaining.
 
 Explanation of columns:
-- *patch*: is the game patch of this match take place at
-- *position*: is the specfic role of the player
-- *champion*: is the champion selection of the player
-- *result*: is the boolean result of this match(1 for win, 0 for lose)
-- *damagetochampions*: is the damage of the player deals to enemy champions
-- *damageshare*: is the ratio proportion of the damage the player has to the whole team
-- *visionscore*: is the vision of the team this player has influenced
-- *totalgold*: is the total gold of the player gained in the whole match
+- **patch**: is the game patch of this match take place at
+- **position**: is the specfic role of the player
+- **champion**: is the champion selection of the player
+- **result**: is the boolean result of this match(1 for win, 0 for lose)
+- **damagetochampions**: is the damage of the player deals to enemy champions
+- **damageshare**: is the ratio proportion of the damage the player has to the whole team
+- **visionscore**: is the vision of the team this player has influenced
+- **totalgold**: is the total gold of the player gained in the whole match
 
 ## Data Cleaning and Exploratory Data Analysis
 After loading the dataset, we need to first select the above columns from the original dataset by specifying the column neams. Then we need filter out all rows of team data from the dataset by slicing the "postion" columns. After this, we check all none values in each column to make sure they are in explainable extent(notice that it is common that there are many none values in "split" column because certain  matches hold only once a year so they have no splits definitions). Finally, we add one more column called "damage per gold" by dividing the "total damage" by the "total gold" as the most direct anaylyzing factor. After cleaning, here is the head of our dataset:
@@ -369,8 +369,8 @@ To mitigate overfitting risks and improve model performance, we undertook hyperp
 
 We introduced two new features based on early game performance:
 
-- *Early Game Efficiency:* A combination of early kills, assists, and a portion of the CS by the 15-minute mark.
-- *Gold-XP Ratio at 15:* The ratio of gold to XP at the 15-minute mark, highlighting resource management efficiency.
+- **Early Game Efficiency:** A combination of early kills, assists, and a portion of the CS by the 15-minute mark.
+- **Gold-XP Ratio at 15:** The ratio of gold to XP at the 15-minute mark, highlighting resource management efficiency.
 
 The first variable is easy to understand, just another measurement of indiactor but with different proportions of compoenents. For the second one, notice that in League of Legends, getting same amount of gold and XP at the same time is very important for carrying roles like Mid and Bot. The reason is that besides cs(minions), another important way to get XP is getting kills. When a team gets a kill, all the team members nearby would get a very large amount of XP. However, only the one who get the kill would get the majority of the gold and rest only share a very small portion of gold. So such a Gold-XP Ratio would reflect not only if a player's preset at the team kill, but also show whether this player gets a kill or just share the assist gold. In professoinal matches, when carrying positions like Mid and Bot only take assists but not kills, even if they are high in XP, it is still very difficult for them to carry due to lack of gold to purchase better equipments. That is why we add this feature.
 
